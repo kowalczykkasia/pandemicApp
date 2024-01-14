@@ -1,7 +1,14 @@
 package com.swifty.android.pandemicfightersportfolio.home
 
-import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import com.swifty.android.pandemicfightersportfolio.base.BaseFragment
+import com.swifty.android.pandemicfightersportfolio.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
+    override fun inflateViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false)
 }
