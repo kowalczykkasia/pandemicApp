@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <dimen name="margin5">5dp</dimen>
+    <dimen name="margin10">10dp</dimen>
+    <dimen name="margin12">12dp</dimen>
+    <dimen name="margin15">15dp</dimen>
+    <dimen name="margin24">24dp</dimen>
+    <dimen name="margin30">30dp</dimen>
+
+    <dimen name="textSize16">16sp</dimen>
+
+    <dimen name="cardViewRadius">30dp</dimen>
+
+    <dimen name="defaultButtonHeight">45dp</dimen>
+</resources>

@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.HomeFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/black">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_white"
+        android:minHeight="160dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:contentInsetStartWithNavigation="0dp">
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/margin24"
+        android:paddingBottom="@dimen/margin30"
+        android:weightSum="2">
 
-</FrameLayout>
+        <com.android.pandemic.fighters.utils.PrimaryButton
+            android:layout_width="0dp"
+            android:layout_height="@dimen/defaultButtonHeight"
+            android:layout_marginEnd="@dimen/margin5"
+            android:layout_weight="1"
+            app:btnIcon="@drawable/ic_notification"
+            app:text="@string/notifications" />
+
+        <com.android.pandemic.fighters.utils.PrimaryButton
+            android:layout_width="0dp"
+            android:layout_height="@dimen/defaultButtonHeight"
+            android:layout_marginStart="@dimen/margin5"
+            android:layout_weight="1"
+            app:bgColor="@color/secondary_color"
+            app:btnIcon="@drawable/ic_report"
+            app:text="@string/report_virus" />
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

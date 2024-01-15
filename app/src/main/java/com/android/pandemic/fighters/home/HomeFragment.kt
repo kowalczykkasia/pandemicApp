@@ -1,9 +1,9 @@
-package com.swifty.android.pandemicfightersportfolio.home
+package com.android.pandemic.fighters.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.swifty.android.pandemicfightersportfolio.base.BaseFragment
-import com.swifty.android.pandemicfightersportfolio.databinding.FragmentHomeBinding
+import com.android.pandemic.fighters.base.BaseFragment
+import com.android.pandemic.fighters.databinding.FragmentHomeBinding
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 

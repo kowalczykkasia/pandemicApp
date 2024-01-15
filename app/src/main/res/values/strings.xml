@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">pandemicFightersPortfolio</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="report_virus">Report Virus</string>
+    <string name="notifications">Notifications</string>
 </resources>

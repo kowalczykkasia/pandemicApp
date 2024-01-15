@@ -1,4 +1,4 @@
-package com.swifty.android.pandemicfightersportfolio
+package com.android.pandemic.fighters
 
 import org.junit.Test
 
