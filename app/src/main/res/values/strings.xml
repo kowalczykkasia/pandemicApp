@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">pandemicFightersPortfolio</string>
+    <string name="app_name">Pandemic Fighters</string>
     <string name="report_virus">Report Virus</string>
     <string name="notifications">Notifications</string>
 </resources>
