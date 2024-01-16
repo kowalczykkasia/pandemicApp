@@ -1,7 +1,6 @@
 package com.android.pandemic.fighters.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +13,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnMapReadyCallback {
 
@@ -41,7 +41,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnMapReadyCallback {
     private fun initViewModel() {
         viewModel.reportedCasesList.onEach {
             //todo show on map
-            Log.d("HALKO", "${it}")
         }.launchIn(lifecycleScope)
     }
 
