@@ -1,4 +1,4 @@
-package com.swifty.android.pandemicfightersportfolio.base
+package com.android.pandemic.fighters.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,16 +1,20 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs'
 }
 
 android {
-    namespace 'com.swifty.android.pandemicfightersportfolio'
+    namespace 'com.android.pandemic.fighters'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.swifty.android.pandemicfightersportfolio"
+        applicationId "com.android.pandemic.fighters"
         minSdk 21
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -22,9 +26,14 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
+            buildConfigField "String", "BASE_URL", "\"https://firestore.googleapis.com/v1/projects/pandemicfighters-411316/databases/(default)/documents/\""
+        }
+        release {
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", "\"https://firestore.googleapis.com/v1/projects/pandemicfighters-411316/databases/(default)/documents/\""
         }
     }
     compileOptions {
@@ -34,6 +43,13 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    secrets {
+        propertiesFileName = "secrets.properties"
+        ignoreList.add("keyToIgnore")
+        ignoreList.add("sdk.*")
+    }
+
 }
 
 dependencies {
@@ -45,7 +61,16 @@ dependencies {
     implementation 'androidx.databinding:viewbinding:8.2.1'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.7.6'
     implementation 'androidx.navigation:navigation-ui-ktx:2.7.6'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.10.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation "com.airbnb.android:lottie:$lotti_version"
+    implementation 'com.google.android.gms:play-services-maps:18.2.0'
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$interceptorVersion"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 }
