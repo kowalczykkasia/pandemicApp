@@ -2,7 +2,7 @@ package com.android.pandemic.fighters.home
 
 import androidx.lifecycle.viewModelScope
 import com.android.pandemic.fighters.base.BaseViewModel
-import com.android.pandemic.fighters.base.DataState
+import com.android.pandemic.fighters.base.ResponseState
 import com.android.pandemic.fighters.base.mutableSharedFlow
 import com.android.pandemic.fighters.home.models.ReportedVirusCasesResponse
 import com.android.pandemic.fighters.repositories.VirusRepository
@@ -17,8 +17,8 @@ class HomeViewModel @Inject constructor(
     virusRepository: VirusRepository
 ) : BaseViewModel() {
 
-    private val _reportedCasesList = mutableSharedFlow<DataState<ReportedVirusCasesResponse>>()
-    val reportedCasesList: SharedFlow<DataState<ReportedVirusCasesResponse>>
+    private val _reportedCasesList = mutableSharedFlow<ResponseState<ReportedVirusCasesResponse>>()
+    val reportedCasesList: SharedFlow<ResponseState<ReportedVirusCasesResponse>>
         get() = _reportedCasesList
 
     init {

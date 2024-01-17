@@ -1,5 +1,7 @@
 package com.android.pandemic.fighters.home.models
 
+import com.google.gson.annotations.SerializedName
+
 data class StringValue(
-    val stringValue: String
+    @SerializedName("stringValue") val value: String
 )
