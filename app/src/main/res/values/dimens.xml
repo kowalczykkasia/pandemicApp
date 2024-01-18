@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
+    <dimen name="margin2">2dp</dimen>
     <dimen name="margin5">5dp</dimen>
+    <dimen name="margin6">6dp</dimen>
     <dimen name="margin10">10dp</dimen>
     <dimen name="margin12">12dp</dimen>
     <dimen name="margin15">15dp</dimen>
     <dimen name="margin24">24dp</dimen>
     <dimen name="margin30">30dp</dimen>
 
+    <dimen name="textSize12">12sp</dimen>
+    <dimen name="textSize14">14sp</dimen>
     <dimen name="textSize16">16sp</dimen>
 
     <dimen name="cardViewRadius">30dp</dimen>

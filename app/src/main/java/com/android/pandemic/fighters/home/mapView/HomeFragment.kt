@@ -1,16 +1,21 @@
-package com.android.pandemic.fighters.home
+package com.android.pandemic.fighters.home.mapView
 
+import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.android.pandemic.fighters.R
 import com.android.pandemic.fighters.base.BaseFragment
 import com.android.pandemic.fighters.databinding.FragmentHomeBinding
+import com.android.pandemic.fighters.utils.DEFAULT_ZOOM
 import com.android.pandemic.fighters.utils.generateBitmapDescriptorFromRes
 import com.android.pandemic.fighters.utils.handleResponseState
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
@@ -45,7 +50,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnMapReadyCallback {
     private fun initView() {
         binding.apply {
             ivListView.setOnClickListener {
-                //todo navigate 
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToHomeListViewFragment())
             }
         }
     }
@@ -53,25 +58,49 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnMapReadyCallback {
     private fun initViewModel() {
         viewModel.reportedCasesList.onEach {
             it.handleResponseState(successFun = {
-                it.documents.forEach {
-                    map?.addMarker(
-                        createMarker(
-                            it.fields.latitude.value, it.fields.longitude.value
-                        )
-                    )
-                }
+                addMarkers()
             }, errorFun = {
-                //todo show toast
+                Toast.makeText(context, R.string.something_went_wrong, Toast.LENGTH_SHORT).show()
             })
+        }.launchIn(lifecycleScope)
+        viewModel.currentLocation.onEach {
+            setCurrentLocation(it)
         }.launchIn(lifecycleScope)
     }
 
-    private fun createMarker(lat: Double, long: Double) =
+    private fun setCurrentLocation(location: Location? = null) {
+        val lastKnownLocation = location ?: viewModel.currentLocation.replayCache.firstOrNull()
+        map?.apply {
+            lastKnownLocation?.let {
+                moveCamera(
+                    CameraUpdateFactory.newLatLngZoom(
+                        LatLng(it.latitude, it.longitude),
+                        DEFAULT_ZOOM
+                    )
+                )
+                addMarker(createMarker(it.latitude, it.longitude, R.drawable.ic_pin_secondary))
+            }
+        }
+    }
+
+    private fun addMarkers() {
+        viewModel.list.forEach {
+            map?.addMarker(
+                createMarker(
+                    it.fields.latitude.value, it.fields.longitude.value
+                )
+            )
+        }
+    }
+
+    private fun createMarker(lat: Double, long: Double, icon: Int = R.drawable.ic_pin) =
         MarkerOptions().position(LatLng(lat, long)).apply {
-            icon(requireContext().generateBitmapDescriptorFromRes(R.drawable.ic_pin))
+            icon(requireContext().generateBitmapDescriptorFromRes(icon))
         }
 
     override fun onMapReady(map: GoogleMap) {
         this.map = map
+        addMarkers()
+        setCurrentLocation()
     }
 }

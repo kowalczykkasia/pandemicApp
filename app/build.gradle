@@ -29,11 +29,13 @@ android {
         debug {
             minifyEnabled false
             buildConfigField "String", "BASE_URL", "\"https://firestore.googleapis.com/v1/projects/pandemicfighters-411316/databases/(default)/documents/\""
+            buildConfigField "String", "GEOLOCATION_BASE_URL", "\"https://maps.googleapis.com/maps/api/geocode/\""
         }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", "\"https://firestore.googleapis.com/v1/projects/pandemicfighters-411316/databases/(default)/documents/\""
+            buildConfigField "String", "GEOLOCATION_BASE_URL", "\"https://maps.googleapis.com/maps/api/geocode/\""
         }
     }
     compileOptions {
@@ -62,6 +64,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.7.6'
     implementation 'androidx.navigation:navigation-ui-ktx:2.7.6'
     implementation 'com.google.firebase:firebase-firestore-ktx:24.10.0'
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'

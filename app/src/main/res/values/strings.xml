@@ -2,4 +2,11 @@
     <string name="app_name">Pandemic Fighters</string>
     <string name="report_virus">Report Virus</string>
     <string name="notifications">Notifications</string>
+    <string name="closest_location">Closest Location</string>
+    <string name="recent_date">Recent Date</string>
+    <string name="sort_by">Sort by:</string>
+    <string name="title_location_permission">Title</string>
+    <string name="text_location_permission">Description</string>
+    <string name="ok">Ok</string>
+    <string name="something_went_wrong">Something went wrong</string>
 </resources>
