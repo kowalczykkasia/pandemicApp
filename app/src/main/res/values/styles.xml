@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ChipDefaultSettings" parent="Base.Widget.MaterialComponents.Chip">
+        <item name="android:checkable">true</item>
+        <item name="closeIconVisible">false</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="chipStrokeColor">@color/primary_color</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="checkedIcon">@null</item>
+        <item name="closeIcon">@null</item>
+        <item name="chipBackgroundColor">@color/white</item>
+    </style>
+
+</resources>

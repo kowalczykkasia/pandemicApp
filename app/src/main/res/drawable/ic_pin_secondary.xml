@@ -5,16 +5,25 @@
         <shape android:shape="oval">
 
             <solid android:color="#33FF2D54" />
+
+            <size
+                android:width="15dp"
+                android:height="15dp" />
         </shape>
     </item>
     <item
-        android:bottom="200dp"
-        android:left="200dp"
-        android:right="200dp"
-        android:top="200dp">
+        android:bottom="10dp"
+        android:left="10dp"
+        android:right="10dp"
+        android:top="10dp">
+
         <shape android:shape="oval">
 
             <solid android:color="@color/secondary_color" />
+
+            <size
+                android:width="5dp"
+                android:height="5dp" />
         </shape>
     </item>
 </layer-list>
