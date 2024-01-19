@@ -13,4 +13,9 @@ class MainActivityViewModel @Inject constructor(
     fun init() { //todo make it init {}
         provider.startLocationUpdates()
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        provider.stopLocationUpdates()
+    }
 }

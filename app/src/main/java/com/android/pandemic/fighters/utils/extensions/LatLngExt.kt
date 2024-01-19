@@ -1,4 +1,4 @@
-package com.android.pandemic.fighters.utils
+package com.android.pandemic.fighters.utils.extensions
 
 import android.location.Location
 import android.location.LocationManager

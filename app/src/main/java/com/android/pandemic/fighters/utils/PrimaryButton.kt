@@ -3,19 +3,18 @@ package com.android.pandemic.fighters.utils
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
-import android.view.InflateException
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.Keep
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.getResourceIdOrThrow
 import com.airbnb.lottie.LottieAnimationView
 import com.android.pandemic.fighters.R
-import java.lang.reflect.InvocationTargetException
+import com.android.pandemic.fighters.utils.extensions.gone
+import com.android.pandemic.fighters.utils.extensions.invisible
+import com.android.pandemic.fighters.utils.extensions.setImageResource
+import com.android.pandemic.fighters.utils.extensions.visible
 
 class PrimaryButton(context: Context, attrs: AttributeSet) : ConstraintLayout(context, attrs) {
 
@@ -25,6 +24,7 @@ class PrimaryButton(context: Context, attrs: AttributeSet) : ConstraintLayout(co
     private var tvTitle: TextView
     private var ivIcon: ImageView
     private var state: ButtonState = ButtonState.DISABLED
+    private var bgColor: Int = R.color.primary_color
 
     init {
         inflate(context, R.layout.primary_button, this)
@@ -41,12 +41,52 @@ class PrimaryButton(context: Context, attrs: AttributeSet) : ConstraintLayout(co
         set?.let {
             context.obtainStyledAttributes(it, R.styleable.CustomButton).run {
                 tvTitle.text = getString(R.styleable.CustomButton_text)
-                val bgColor = getResourceId(R.styleable.CustomButton_bgColor, R.color.primary_color)
+                bgColor = getResourceId(R.styleable.CustomButton_bgColor, R.color.primary_color)
                 buttonPrimary.background = ContextCompat.getDrawable(context, bgColor)
                 setImageResource(ivIcon)
+                setState(getBoolean(R.styleable.CustomButton_isActive, true))
                 recycle()
             }
         }
+    }
+
+    fun setState(isActive: Boolean){
+        if (isActive) setActive()
+        else setDisabled()
+    }
+
+    fun setLoading(){
+        state = ButtonState.LOADING
+        loaderView.visible()
+        buttonPrimary.apply{
+            buttonPrimary.setBackgroundColor(ContextCompat.getColor(context, R.color.disabled_background))
+            isClickable = false
+        }
+        tvTitle.invisible()
+    }
+
+    fun setDisabled(){
+        state = ButtonState.DISABLED
+        loaderView.gone()
+        buttonPrimary.apply{
+            buttonPrimary.setBackgroundColor(ContextCompat.getColor(context, R.color.disabled_background))
+            isClickable = false
+        }
+        tvTitle.visible()
+    }
+
+    fun setActive(){
+        state = ButtonState.ACTIVE
+        loaderView.gone()
+        buttonPrimary.apply{
+            buttonPrimary.setBackgroundColor(ContextCompat.getColor(context, bgColor))
+            isClickable = true
+        }
+        tvTitle.visible()
+    }
+
+    override fun setOnClickListener(onClick: OnClickListener?){
+        buttonPrimary.setOnClickListener(onClick)
     }
 }
 

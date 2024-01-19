@@ -1,4 +1,4 @@
-package com.android.pandemic.fighters.utils
+package com.android.pandemic.fighters.utils.extensions
 
 import com.android.pandemic.fighters.base.ResponseState
 

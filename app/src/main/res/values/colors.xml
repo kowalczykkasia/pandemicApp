@@ -6,4 +6,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="hint_text_color">#7F8489</color>
+    <color name="disabled_background">#353A40</color>
 </resources>

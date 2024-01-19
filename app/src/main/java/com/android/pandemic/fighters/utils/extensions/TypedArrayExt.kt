@@ -1,4 +1,4 @@
-package com.android.pandemic.fighters.utils
+package com.android.pandemic.fighters.utils.extensions
 
 import android.content.res.TypedArray
 import android.widget.ImageView
@@ -9,6 +9,6 @@ fun TypedArray.setImageResource(imageView: ImageView, defaultResources: Int? = n
     try {
         imageView.setImageResource(getResourceIdOrThrow(R.styleable.CustomButton_btnIcon))
     } catch (e: IllegalArgumentException) {
-        defaultResources?.let { imageView.setImageResource(it) }
+        defaultResources?.let { imageView.setImageResource(it) } ?: kotlin.run { imageView.gone() }
     }
 }

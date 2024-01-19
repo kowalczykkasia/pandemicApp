@@ -35,6 +35,7 @@
                 app:text="@string/notifications" />
 
             <com.android.pandemic.fighters.utils.PrimaryButton
+                android:id="@+id/btnReportNewCase"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/defaultButtonHeight"
                 android:layout_marginStart="@dimen/margin5"

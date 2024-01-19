@@ -9,4 +9,10 @@
     <string name="text_location_permission">Description</string>
     <string name="ok">Ok</string>
     <string name="something_went_wrong">Something went wrong</string>
+    <string name="please_share_location">Please share your location to interact with Pandemic App</string>
+    <string name="edit">Edit</string>
+    <string name="enter_your_message">Enter your message</string>
+    <string name="report_new_case">Report New Case</string>
+    <string name="location">Location: </string>
+    <string name="choose_location">Choose location</string>
 </resources>
