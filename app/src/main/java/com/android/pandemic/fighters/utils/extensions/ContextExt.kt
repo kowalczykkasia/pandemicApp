@@ -1,4 +1,4 @@
-package com.android.pandemic.fighters.utils
+package com.android.pandemic.fighters.utils.extensions
 
 import android.content.Context
 import android.graphics.Bitmap

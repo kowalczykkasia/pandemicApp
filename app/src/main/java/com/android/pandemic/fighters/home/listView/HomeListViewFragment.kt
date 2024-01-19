@@ -8,7 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.android.pandemic.fighters.base.BaseFragment
 import com.android.pandemic.fighters.databinding.FragmentHomeListViewBinding
-import com.android.pandemic.fighters.utils.handleResponseState
+import com.android.pandemic.fighters.utils.extensions.handleResponseState
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn

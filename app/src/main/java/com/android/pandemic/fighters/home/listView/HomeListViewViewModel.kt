@@ -9,7 +9,7 @@ import com.android.pandemic.fighters.home.models.Document
 import com.android.pandemic.fighters.repositories.VirusRepository
 import com.android.pandemic.fighters.utils.CLOSEST_LOCATION
 import com.android.pandemic.fighters.utils.RECENT_DATE
-import com.android.pandemic.fighters.utils.distanceTo
+import com.android.pandemic.fighters.utils.extensions.distanceTo
 import com.android.pandemic.fighters.utils.location.LocationEmitter
 import com.google.android.gms.maps.model.LatLng
 import dagger.hilt.android.lifecycle.HiltViewModel

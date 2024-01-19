@@ -13,8 +13,8 @@ import com.android.pandemic.fighters.R
 import com.android.pandemic.fighters.base.BaseFragment
 import com.android.pandemic.fighters.databinding.FragmentHomeBinding
 import com.android.pandemic.fighters.utils.DEFAULT_ZOOM
-import com.android.pandemic.fighters.utils.generateBitmapDescriptorFromRes
-import com.android.pandemic.fighters.utils.handleResponseState
+import com.android.pandemic.fighters.utils.extensions.generateBitmapDescriptorFromRes
+import com.android.pandemic.fighters.utils.extensions.handleResponseState
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -53,6 +53,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnMapReadyCallback {
         binding.apply {
             ivListView.setOnClickListener {
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToHomeListViewFragment())
+            }
+            btnReportNewCase.setOnClickListener {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToReportNewCaseFragment())
             }
         }
     }
