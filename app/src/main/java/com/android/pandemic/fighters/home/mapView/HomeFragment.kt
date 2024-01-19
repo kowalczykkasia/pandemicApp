@@ -19,6 +19,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -29,6 +30,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnMapReadyCallback {
 
     private val viewModel by viewModels<HomeViewModel>()
     private var map: GoogleMap? = null
+    private var currentLocationMarker: Marker? = null
 
     override fun inflateViewBinding(
         inflater: LayoutInflater, container: ViewGroup?
@@ -68,17 +70,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnMapReadyCallback {
         }.launchIn(lifecycleScope)
     }
 
-    private fun setCurrentLocation(location: Location? = null) {
+    private fun setCurrentLocation(location: Location? = null, moveCamera: Boolean = false) {
         val lastKnownLocation = location ?: viewModel.currentLocation.replayCache.firstOrNull()
         map?.apply {
-            lastKnownLocation?.let {
-                moveCamera(
-                    CameraUpdateFactory.newLatLngZoom(
-                        LatLng(it.latitude, it.longitude),
-                        DEFAULT_ZOOM
-                    )
-                )
-                addMarker(createMarker(it.latitude, it.longitude, R.drawable.ic_pin_secondary))
+            lastKnownLocation?.let { location ->
+                currentLocationMarker?.remove() ?: kotlin.run {
+                    moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), DEFAULT_ZOOM))
+                }
+                currentLocationMarker = addMarker(createMarker(location.latitude, location.longitude, R.drawable.ic_location_pin))
+                if(moveCamera) moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), DEFAULT_ZOOM))
             }
         }
     }
@@ -101,6 +101,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnMapReadyCallback {
     override fun onMapReady(map: GoogleMap) {
         this.map = map
         addMarkers()
-        setCurrentLocation()
+        setCurrentLocation(moveCamera = true)
     }
 }
