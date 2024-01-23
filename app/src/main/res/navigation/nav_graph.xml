@@ -28,5 +28,20 @@
     <fragment
         android:id="@+id/reportNewCaseFragment"
         android:name="com.android.pandemic.fighters.new_case.ReportNewCaseFragment"
-        android:label="ReportNewCaseFragment" />
+        android:label="ReportNewCaseFragment">
+        <action
+            android:id="@+id/action_reportNewCaseFragment_to_mapAddressSelectionFragment"
+            app:destination="@id/mapAddressSelectionFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapAddressSelectionFragment"
+        android:name="com.android.pandemic.fighters.new_case.MapAddressSelectionFragment"
+        android:label="MapAddressSelectionFragment" >
+        <argument
+            android:name="selectedAddress"
+            app:argType="com.android.pandemic.fighters.new_case.models.Result"
+            app:nullable="true" />
+    </fragment>
 </navigation>

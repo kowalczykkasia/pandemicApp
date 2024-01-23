@@ -12,4 +12,19 @@
         <item name="chipBackgroundColor">@color/white</item>
     </style>
 
+    <style name="BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/bottomSheetStyleWrapper</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+    <style name="bottomSheetStyleWrapper" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/rounded_bottom_background</item>
+        <item name="android:colorBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="CustomSearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="android:textColorHint">@color/hint_text_color</item>
+        <item name="android:editTextColor">@color/black</item>
+    </style>
+
 </resources>

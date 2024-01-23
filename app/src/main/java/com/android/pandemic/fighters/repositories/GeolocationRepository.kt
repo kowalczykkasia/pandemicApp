@@ -9,4 +9,7 @@ class GeolocationRepository(
 
     suspend fun getFormattedAddress(latitude: Double, longitude: Double) =
         handleApiResponse { geolocationService.getFormattedAddress("$latitude,$longitude") }
+
+    suspend fun getLatLongOfAddress(address: String) =
+        handleApiResponse { geolocationService.getLatLongOfAddress(address) }
 }

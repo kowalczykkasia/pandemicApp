@@ -15,4 +15,8 @@
     <string name="report_new_case">Report New Case</string>
     <string name="location">Location: </string>
     <string name="choose_location">Choose location</string>
+    <string name="set_location">Set location of virus by moving the map or searching by name</string>
+    <string name="search">Search</string>
+    <string name="submit">Submit</string>
+    <string name="location_not_found">Location not found</string>
 </resources>

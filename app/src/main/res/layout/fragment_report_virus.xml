@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent">
 
     <androidx.core.widget.NestedScrollView
@@ -32,9 +33,13 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tvChosenLocation"
                     android:layout_width="0dp"
+                    android:layout_marginEnd="@dimen/margin10"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:maxLines="2"
+                    android:ellipsize="end"
                     android:text="@string/choose_location"
                     android:textColor="@color/secondary_color" />
 
@@ -46,6 +51,7 @@
                     android:elevation="0dp"
                     android:maxLines="1"
                     android:text="@string/edit"
+                    android:textColor="@color/black"
                     android:textAllCaps="false"
                     android:textSize="@dimen/textSize14" />
 
