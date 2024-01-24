@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
@@ -14,64 +15,86 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+           android:paddingTop="@dimen/margin10"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin12"
-            android:layout_marginEnd="@dimen/margin12"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
+            <ImageView
+                android:id="@+id/ivBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin10"
-                android:text="@string/sort_by"
-                android:textColor="@color/black"
-                android:textSize="@dimen/textSize14" />
+                android:layout_gravity="start"
+                android:padding="@dimen/margin15"
+                android:src="@drawable/ic_back"
+                app:layout_constraintBottom_toBottomOf="@+id/tvReportVirusTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvReportVirusTitle"
+                app:tint="@color/black" />
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipFilters"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:checkedChip="@id/chipRecentDate"
-                app:chipSpacing="8dp"
-                app:selectionRequired="true"
-                app:singleLine="true"
-                app:singleSelection="true"
-                tools:visibility="visible">
+                android:layout_marginStart="@dimen/margin12"
+                android:layout_marginEnd="@dimen/margin12"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipRecentDate"
-                    style="@style/ChipDefaultSettings"
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/margin30"
-                    android:layout_marginEnd="@dimen/margin6"
-                    android:layout_weight="1"
-                    android:tag="RECENT_DATE"
-                    android:text="@string/recent_date"
-                    android:textAlignment="center"
-                    android:textColor="@color/text_state"
-                    android:textSize="@dimen/textSize14"
-                    app:chipBackgroundColor="@color/chip_state"
-                    app:chipCornerRadius="@dimen/cardViewRadius"
-                    app:chipMinTouchTargetSize="0dp" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin10"
+                    android:text="@string/sort_by"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSize14" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipClosestLocation"
-                    style="@style/ChipDefaultSettings"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/margin30"
-                    android:layout_marginEnd="@dimen/margin6"
-                    android:layout_weight="1"
-                    android:tag="CLOSEST_LOCATION"
-                    android:text="@string/closest_location"
-                    android:textAlignment="center"
-                    android:textColor="@color/text_state"
-                    android:textSize="@dimen/textSize14"
-                    app:chipBackgroundColor="@color/chip_state"
-                    app:chipCornerRadius="@dimen/cardViewRadius"
-                    app:chipMinTouchTargetSize="0dp" />
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipFilters"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:checkedChip="@id/chipRecentDate"
+                    app:chipSpacing="8dp"
+                    app:selectionRequired="true"
+                    app:singleLine="true"
+                    app:singleSelection="true"
+                    tools:visibility="visible">
 
-            </com.google.android.material.chip.ChipGroup>
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipRecentDate"
+                        style="@style/ChipDefaultSettings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/margin30"
+                        android:layout_marginEnd="@dimen/margin6"
+                        android:layout_weight="1"
+                        android:tag="RECENT_DATE"
+                        android:text="@string/recent_date"
+                        android:textAlignment="center"
+                        android:textColor="@color/text_state"
+                        android:textSize="@dimen/textSize14"
+                        android:theme="@style/MaterialAppTheme"
+                        app:chipBackgroundColor="@color/chip_state"
+                        app:chipCornerRadius="@dimen/cardViewRadius"
+                        app:chipMinTouchTargetSize="0dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipClosestLocation"
+                        style="@style/ChipDefaultSettings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/margin30"
+                        android:layout_marginEnd="@dimen/margin6"
+                        android:layout_weight="1"
+                        android:tag="CLOSEST_LOCATION"
+                        android:text="@string/closest_location"
+                        android:textAlignment="center"
+                        android:textColor="@color/text_state"
+                        android:textSize="@dimen/textSize14"
+                        android:theme="@style/MaterialAppTheme"
+                        app:chipBackgroundColor="@color/chip_state"
+                        app:chipCornerRadius="@dimen/cardViewRadius"
+                        app:chipMinTouchTargetSize="0dp" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </LinearLayout>
 
         </LinearLayout>
 

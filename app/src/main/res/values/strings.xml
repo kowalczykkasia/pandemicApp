@@ -19,4 +19,5 @@
     <string name="search">Search</string>
     <string name="submit">Submit</string>
     <string name="location_not_found">Location not found</string>
+    <string name="successfully_reported">Successfully reported!</string>
 </resources>
