@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.android.pandemic.fighters.base.BaseFragment
 import com.android.pandemic.fighters.databinding.FragmentHomeListViewBinding
 import com.android.pandemic.fighters.utils.extensions.handleResponseState
@@ -43,7 +44,9 @@ class HomeListViewFragment : BaseFragment<FragmentHomeListViewBinding>() {
 
     private fun initView() {
         binding.apply {
+            rvList.itemAnimator = null
             rvList.adapter = adapter
+            ivBack.setOnClickListener { findNavController().popBackStack() }
             chipFilters.setOnCheckedStateChangeListener { group, checkedIds ->
                 checkedIds.firstOrNull()?.let {
                     val selectedChip = group.findViewById<Chip>(it)
