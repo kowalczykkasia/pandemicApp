@@ -20,4 +20,5 @@
     <string name="submit">Submit</string>
     <string name="location_not_found">Location not found</string>
     <string name="successfully_reported">Successfully reported!</string>
+    <string name="where_is_the_virus">Where is the virus?</string>
 </resources>

@@ -2,8 +2,6 @@ package com.android.pandemic.fighters.home.listView
 
 import androidx.lifecycle.viewModelScope
 import com.android.pandemic.fighters.base.BaseViewModel
-import com.android.pandemic.fighters.base.ResponseState
-import com.android.pandemic.fighters.base.modifySuccessResponse
 import com.android.pandemic.fighters.base.mutableSharedFlow
 import com.android.pandemic.fighters.home.models.Document
 import com.android.pandemic.fighters.repositories.VirusRepository
@@ -24,33 +22,32 @@ class HomeListViewViewModel @Inject constructor(
     private val locationEmitter: LocationEmitter
 ) : BaseViewModel() {
 
-    private val _reportedCasesList = mutableSharedFlow<ResponseState<List<Document>>>()
-    val reportedCasesList: SharedFlow<ResponseState<List<Document>>>
+    private val _reportedCasesList = mutableSharedFlow<List<Document>>()
+    val reportedCasesList: SharedFlow<List<Document>>
         get() = _reportedCasesList
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            val response = virusRepository.getReportedVirusCases()
-            _reportedCasesList.emit(response.modifySuccessResponse{
-                sort(RECENT_DATE, it.documents)
-            })
+            virusRepository.getReportedVirusCases().collect {
+                _reportedCasesList.emit(sort(RECENT_DATE, it))
+            }
         }
     }
 
     fun sortBy(sortCriteria: String, newList: List<Document>? = null) {
-        val oldList =
-            newList ?: (reportedCasesList.replayCache.firstOrNull() as? ResponseState.Success)?.data
-            ?: listOf()
+        val oldList = newList ?: (reportedCasesList.replayCache.firstOrNull()) ?: listOf()
         viewModelScope.launch(Dispatchers.IO) {
-            _reportedCasesList.emit(ResponseState.Success(sort(sortCriteria, oldList)))
+            _reportedCasesList.emit(sort(sortCriteria, oldList))
         }
     }
 
     private fun sort(sortCriteria: String, list: List<Document>): List<Document> {
         return when (sortCriteria) {
             CLOSEST_LOCATION -> {
-                val lastKnownLocation = locationEmitter.getCurrentLocation().replayCache.firstOrNull()
-                val currentLocation = LatLng(lastKnownLocation?.latitude ?: 0.0, lastKnownLocation?.longitude?: 0.0)
+                val lastKnownLocation =
+                    locationEmitter.getCurrentLocation().replayCache.firstOrNull()
+                val currentLocation =
+                    LatLng(lastKnownLocation?.latitude ?: 0.0, lastKnownLocation?.longitude ?: 0.0)
                 list.sortedBy {
                     LatLng(
                         it.fields.latitude.value,
