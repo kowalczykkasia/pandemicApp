@@ -14,6 +14,7 @@ import com.android.pandemic.fighters.databinding.FragmentReportVirusBinding
 import com.android.pandemic.fighters.new_case.models.Result
 import com.android.pandemic.fighters.utils.SELECTED_LOCATION
 import com.android.pandemic.fighters.utils.extensions.handleResponseState
+import com.android.pandemic.fighters.utils.extensions.navigate
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -33,7 +34,7 @@ class ReportNewCaseFragment : BaseFragment<FragmentReportVirusBinding>() {
         binding.apply {
             ivBack.setOnClickListener { findNavController().popBackStack() }
             btnEdit.setOnClickListener {
-                findNavController().navigate(ReportNewCaseFragmentDirections.actionReportNewCaseFragmentToMapAddressSelectionFragment(selectedAddress))
+                navigate(ReportNewCaseFragmentDirections.actionReportNewCaseFragmentToMapAddressSelectionFragment(selectedAddress))
             }
             findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Result>(
                 SELECTED_LOCATION

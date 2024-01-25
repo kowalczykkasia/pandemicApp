@@ -2,6 +2,7 @@ package com.android.pandemic.fighters.di
 
 import com.android.pandemic.fighters.api.GeolocationService
 import com.android.pandemic.fighters.api.PandemicService
+import com.android.pandemic.fighters.db.AppDatabase
 import com.android.pandemic.fighters.repositories.GeolocationRepository
 import com.android.pandemic.fighters.repositories.VirusRepository
 import dagger.Module
@@ -16,7 +17,7 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideVirusRepository(pandemicService: PandemicService) = VirusRepository(pandemicService)
+    fun provideVirusRepository(pandemicService: PandemicService, appDatabase: AppDatabase) = VirusRepository(pandemicService, appDatabase.reportedCasesDao())
 
     @Provides
     @Singleton

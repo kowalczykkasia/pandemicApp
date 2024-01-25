@@ -14,5 +14,5 @@ interface PandemicService {
     @POST("reporting")
     suspend fun reportVirusCase(
         @Body document: Document
-    ): ReportedVirusCasesResponse
+    ): Document
 }

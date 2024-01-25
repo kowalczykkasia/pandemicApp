@@ -9,7 +9,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.android.pandemic.fighters.base.BaseFragment
 import com.android.pandemic.fighters.databinding.FragmentHomeListViewBinding
-import com.android.pandemic.fighters.utils.extensions.handleResponseState
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -36,9 +35,7 @@ class HomeListViewFragment : BaseFragment<FragmentHomeListViewBinding>() {
 
     private fun initViewModel() {
         viewModel.reportedCasesList.onEach {
-            it.handleResponseState(successFun = {
-                adapter.submitList(it.map { it.fields })
-            })
+            adapter.submitList(it.map { it.fields })
         }.launchIn(lifecycleScope)
     }
 

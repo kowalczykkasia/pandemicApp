@@ -6,7 +6,6 @@ import com.android.pandemic.fighters.base.mutableSharedFlow
 import com.android.pandemic.fighters.home.models.Document
 import com.android.pandemic.fighters.home.models.DoubleValue
 import com.android.pandemic.fighters.home.models.Fields
-import com.android.pandemic.fighters.home.models.ReportedVirusCasesResponse
 import com.android.pandemic.fighters.home.models.StringValue
 import com.android.pandemic.fighters.new_case.models.Result
 import com.android.pandemic.fighters.repositories.VirusRepository
@@ -22,8 +21,8 @@ class ReportNewCaseViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val _response =
-        mutableSharedFlow<ResponseState<ReportedVirusCasesResponse>>()
-    val response: SharedFlow<ResponseState<ReportedVirusCasesResponse>>
+        mutableSharedFlow<ResponseState<Document>>()
+    val response: SharedFlow<ResponseState<Document>>
         get() = _response
 
     fun reportVirusCase(description: String, location: Result?) {
@@ -37,7 +36,7 @@ class ReportNewCaseViewModel @Inject constructor(
                         DoubleValue(location?.geometry?.location?.lat ?: 0.0),
                         DoubleValue(location?.geometry?.location?.lng ?: 0.0),
                         StringValue(System.currentTimeMillis().toString())
-                    )
+                    ), ""
                 )
             ))
         }

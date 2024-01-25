@@ -61,18 +61,28 @@ class PrimaryButton(context: Context, attrs: AttributeSet) : ConstraintLayout(co
         buttonPrimary.apply{
             buttonPrimary.setBackgroundColor(ContextCompat.getColor(context, R.color.disabled_background))
             isClickable = false
+            isEnabled = false
         }
-        tvTitle.invisible()
+        tvTitle.apply{
+            invisible()
+            isEnabled = false
+        }
+        ivIcon.isEnabled = false
     }
 
-    fun setDisabled(){
+    private fun setDisabled(){
         state = ButtonState.DISABLED
         loaderView.gone()
         buttonPrimary.apply{
             buttonPrimary.setBackgroundColor(ContextCompat.getColor(context, R.color.disabled_background))
             isClickable = false
+            isEnabled = false
         }
-        tvTitle.visible()
+        tvTitle.apply{
+            visible()
+            isEnabled = false
+        }
+        ivIcon.isEnabled = false
     }
 
     fun setActive(){
@@ -81,8 +91,13 @@ class PrimaryButton(context: Context, attrs: AttributeSet) : ConstraintLayout(co
         buttonPrimary.apply{
             buttonPrimary.setBackgroundColor(ContextCompat.getColor(context, bgColor))
             isClickable = true
+            isEnabled = true
         }
-        tvTitle.visible()
+        tvTitle.apply {
+            visible()
+            isEnabled = true
+        }
+        ivIcon.isEnabled = true
     }
 
     override fun setOnClickListener(onClick: OnClickListener?){

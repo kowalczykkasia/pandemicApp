@@ -34,7 +34,8 @@
                 android:src="@drawable/ic_notification"
                 app:layout_constraintBottom_toBottomOf="@+id/tvTitle"
                 app:layout_constraintEnd_toStartOf="@+id/tvTitle"
-                app:layout_constraintTop_toTopOf="@+id/tvTitle" />
+                app:layout_constraintTop_toTopOf="@+id/tvTitle"
+                app:tint="@color/button_primary_text_color" />
 
             <TextView
                 android:id="@+id/tvTitle"
@@ -44,7 +45,7 @@
                 android:enabled="true"
                 android:gravity="center"
                 android:textAllCaps="false"
-                android:textColor="@drawable/button_primary_text_color"
+                android:textColor="@color/button_primary_text_color"
                 android:textSize="@dimen/textSize16"
                 tools:text="Button" />
 

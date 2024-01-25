@@ -4,14 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
-import com.android.pandemic.fighters.R
 import com.android.pandemic.fighters.base.MapBaseFragment
 import com.android.pandemic.fighters.databinding.FragmentHomeBinding
-import com.android.pandemic.fighters.utils.extensions.handleResponseState
+import com.android.pandemic.fighters.utils.extensions.navigate
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
@@ -44,21 +41,17 @@ class HomeFragment : MapBaseFragment<FragmentHomeBinding>(), OnMapReadyCallback 
     private fun initView() {
         binding.apply {
             ivListView.setOnClickListener {
-                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToHomeListViewFragment())
+                navigate(HomeFragmentDirections.actionHomeFragmentToHomeListViewFragment())
             }
             btnReportNewCase.setOnClickListener {
-                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToReportNewCaseFragment())
+                navigate(HomeFragmentDirections.actionHomeFragmentToReportNewCaseFragment())
             }
         }
     }
 
     private fun initViewModel() {
         viewModel.reportedCasesList.onEach {
-            it.handleResponseState(successFun = {
-                addMarkers()
-            }, errorFun = {
-                Toast.makeText(context, R.string.something_went_wrong, Toast.LENGTH_SHORT).show()
-            })
+            addMarkers()
         }.launchIn(lifecycleScope)
         viewModel.currentLocation.onEach {
             setCurrentLocation(it)
@@ -66,7 +59,7 @@ class HomeFragment : MapBaseFragment<FragmentHomeBinding>(), OnMapReadyCallback 
     }
 
     private fun addMarkers() {
-        viewModel.list.forEach {
+        viewModel.reportedCasesList.replayCache.firstOrNull()?.forEach {
             addMarker(LatLng( it.fields.latitude.value, it.fields.longitude.value))
         }
     }
