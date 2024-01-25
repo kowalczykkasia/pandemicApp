@@ -27,7 +27,7 @@ class ReportedCasesAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
-        BetsItemViewHolder(
+        ReportedCasesVIewHolder(
             ViewItemListBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -36,10 +36,10 @@ class ReportedCasesAdapter(
         )
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) =
-        (holder as BetsItemViewHolder).bind(getItem(position) as Fields)
+        (holder as ReportedCasesVIewHolder).bind(getItem(position) as Fields)
 }
 
-class BetsItemViewHolder(private var binding: ViewItemListBinding) :
+class ReportedCasesVIewHolder(private var binding: ViewItemListBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(item: Fields) {
         binding.apply {
