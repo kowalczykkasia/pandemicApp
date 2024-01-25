@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "152518094383",
+    "project_id": "pandemicfighters-411316",
+    "storage_bucket": "pandemicfighters-411316.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:152518094383:android:e86983b22ce6670c26a0da",
+        "android_client_info": {
+          "package_name": "com.android.pandemic.fighters"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwzO2BO2bRM8-hRSkzLg_P8_H7G-Rg9qQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

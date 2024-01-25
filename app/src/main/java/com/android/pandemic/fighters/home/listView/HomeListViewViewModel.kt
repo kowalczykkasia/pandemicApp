@@ -1,6 +1,5 @@
 package com.android.pandemic.fighters.home.listView
 
-import androidx.lifecycle.viewModelScope
 import com.android.pandemic.fighters.base.BaseViewModel
 import com.android.pandemic.fighters.base.mutableSharedFlow
 import com.android.pandemic.fighters.home.models.Document
@@ -11,9 +10,7 @@ import com.android.pandemic.fighters.utils.extensions.distanceTo
 import com.android.pandemic.fighters.utils.location.LocationEmitter
 import com.google.android.gms.maps.model.LatLng
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,7 +24,7 @@ class HomeListViewViewModel @Inject constructor(
         get() = _reportedCasesList
 
     init {
-        viewModelScope.launch(Dispatchers.IO) {
+        launch {
             virusRepository.getReportedVirusCases().collect {
                 _reportedCasesList.emit(sort(RECENT_DATE, it))
             }
@@ -36,7 +33,7 @@ class HomeListViewViewModel @Inject constructor(
 
     fun sortBy(sortCriteria: String, newList: List<Document>? = null) {
         val oldList = newList ?: (reportedCasesList.replayCache.firstOrNull()) ?: listOf()
-        viewModelScope.launch(Dispatchers.IO) {
+        launch {
             _reportedCasesList.emit(sort(sortCriteria, oldList))
         }
     }

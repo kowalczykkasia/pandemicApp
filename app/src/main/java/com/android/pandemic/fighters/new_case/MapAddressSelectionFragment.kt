@@ -15,7 +15,6 @@ import com.android.pandemic.fighters.base.MapBaseFragment
 import com.android.pandemic.fighters.databinding.FragmentMapAddressSelectionBinding
 import com.android.pandemic.fighters.utils.DEFAULT_ZOOM
 import com.android.pandemic.fighters.utils.SELECTED_LOCATION
-import com.android.pandemic.fighters.utils.extensions.handleResponseState
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener
@@ -61,26 +60,22 @@ class MapAddressSelectionFragment : MapBaseFragment<FragmentMapAddressSelectionB
             setCurrentLocation(it, args.selectedAddress == null, false)
         }.launchIn(lifecycleScope)
         viewModel.formattedAddress.onEach {
-            it.handleResponseState(successFun = {
-                it.results.firstOrNull()?.let {
-                    bottomSheetFragment = AddressInformationBottomSheetFragment(it.formattedAddress, dismissListener =  {
-                        map?.clear()
-                    }, submitListener = {
-                        findNavController().previousBackStackEntry?.savedStateHandle?.set(SELECTED_LOCATION, it)
-                        findNavController().popBackStack()
-                    })
-                    bottomSheetFragment?.show(parentFragmentManager, this::class.java.simpleName)
-                } ?: kotlin.run {
-                    Toast.makeText(context, getString(R.string.location_not_found), Toast.LENGTH_SHORT).show()
-                }
-            })
+            it.results.firstOrNull()?.let {
+                bottomSheetFragment = AddressInformationBottomSheetFragment(it.formattedAddress, dismissListener =  {
+                    map?.clear()
+                }, submitListener = {
+                    findNavController().previousBackStackEntry?.savedStateHandle?.set(SELECTED_LOCATION, it)
+                    findNavController().popBackStack()
+                })
+                bottomSheetFragment?.show(parentFragmentManager, this::class.java.simpleName)
+            } ?: kotlin.run {
+                Toast.makeText(context, getString(R.string.location_not_found), Toast.LENGTH_SHORT).show()
+            }
         }.launchIn(lifecycleScope)
         viewModel.geoAddress.onEach {
-            it.handleResponseState(successFun = {
-                it.results.firstOrNull()?.let {
-                    map?.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(it.geometry.location.lat, it.geometry.location.lng), DEFAULT_ZOOM))
-                }
-            })
+            it.results.firstOrNull()?.let {
+                map?.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(it.geometry.location.lat, it.geometry.location.lng), DEFAULT_ZOOM))
+            }
         }.launchIn(lifecycleScope)
     }
 
