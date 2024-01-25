@@ -13,7 +13,6 @@ import com.android.pandemic.fighters.base.BaseFragment
 import com.android.pandemic.fighters.databinding.FragmentReportVirusBinding
 import com.android.pandemic.fighters.new_case.models.Result
 import com.android.pandemic.fighters.utils.SELECTED_LOCATION
-import com.android.pandemic.fighters.utils.extensions.handleResponseState
 import com.android.pandemic.fighters.utils.extensions.navigate
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -44,22 +43,19 @@ class ReportNewCaseFragment : BaseFragment<FragmentReportVirusBinding>() {
                 btnAddNewCase.setActive()
             }
             btnAddNewCase.setOnClickListener {
+                btnAddNewCase.setLoading()
                 viewModel.reportVirusCase(etDescription.text.toString(), selectedAddress)
             }
         }
     }
 
     private fun initViewModel() {
+        viewModel.error.onEach {
+            binding.btnAddNewCase.setActive()
+        }.launchIn(lifecycleScope)
         viewModel.response.onEach {
-            it.handleResponseState(loadingFun = {
-                binding.btnAddNewCase.setLoading()
-            }, successFun = {
-                findNavController().popBackStack()
-                Toast.makeText(context, getString(R.string.successfully_reported), Toast.LENGTH_SHORT).show()
-            }, errorFun = {
-                binding.btnAddNewCase.setActive()
-                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
-            })
+            findNavController().popBackStack()
+            Toast.makeText(context, getString(R.string.successfully_reported), Toast.LENGTH_SHORT).show()
         }.launchIn(lifecycleScope)
     }
 
